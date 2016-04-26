@@ -8,7 +8,8 @@ services:
 
 before_install:
     - docker build -f Dockerfile -t dev .
+    - docker tag dev:latest $DOCKER_SERVER/dev:latest
 
 after_success:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS -e none $DOCKER_SERVER
-    - docker push dev
+    - docker push $DOCKER_SERVER/dev:latest

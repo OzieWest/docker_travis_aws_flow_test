@@ -7,8 +7,8 @@ services:
     - docker
 
 before_install:
-    - docker build -f Dockerfile -t soramusoka/travis .
+    - docker build -f Dockerfile -t dev .
 
 after_success:
-    - docker login -e $DOCKER_EMAIL -p $DOCKER_PASS -u $DOCKER_USER
-    - docker push soramusoka/travis
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS -e none $DOCKER_HOST
+    - docker push ipinfo

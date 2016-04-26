@@ -11,4 +11,4 @@ before_install:
 
 after_success:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS -e none $DOCKER_HOST
-    - docker push ipinfo
+    - docker push dev

@@ -7,9 +7,9 @@ services:
     - docker
 
 before_install:
-    - docker build -f Dockerfile -t dev .
-    - docker tag dev:latest $DOCKER_SERVER/dev:latest
+    - docker build -f Dockerfile -t dev:$TRAVIS_BRANCH .
+    - docker tag dev:$TRAVIS_BRANCH $DOCKER_SERVER/dev:$TRAVIS_BRANCH
 
 after_success:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS -e none $DOCKER_SERVER
-    - docker push $DOCKER_SERVER/dev:latest
+    - docker push $DOCKER_SERVER/dev:$TRAVIS_BRANCH

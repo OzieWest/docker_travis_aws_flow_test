@@ -1,0 +1,17 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "<EB_BUCKET_NAME>",
+    "Key": "<DOCKER_CREDENTIALS_FILE>"
+  },
+  "Image": {
+    "Name": "<AWS_ACCOUNT_ID>.dkr.ecr.<DOCKER_REPOSITORY_REGION>.amazonaws.com/<DOCKER_REPOSITORY_NAME>:<TRAVIS_BRANCH>",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "3000"
+    }
+  ],
+  "Logging": "/var/log/nginx"
+}

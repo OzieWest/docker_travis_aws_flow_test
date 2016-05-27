@@ -13,10 +13,10 @@ before_install:
   - eval $(aws ecr get-login --region us-west-2) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - docker build -f Dockerfile -t ipinfo:$TRAVIS_BRANCH .
 
-after_success:
+deploy:
   - docker tag ipinfo:$TRAVIS_BRANCH $DOCKER_SERVER/$DOCKER_REPOSITORY_NAME:$TRAVIS_BRANCH
   - docker push $DOCKER_SERVER/$DOCKER_REPOSITORY_NAME:$TRAVIS_BRANCH
-  - chmod +x ./docker_deploy.sh && ./docker_deploy.sh
+  - chmod +x ./deploy.sh && ./deploy.sh
 
 # whitelist
 branches:

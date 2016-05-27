@@ -1,15 +1,27 @@
 sudo: required
 language: node_js
 node_js:
-    - "0.12"
+  - "0.12"
 
 services:
-    - docker
+  - docker
 
 before_install:
-    - docker build -f Dockerfile -t dev:$TRAVIS_BRANCH .
-    - docker tag dev:$TRAVIS_BRANCH $DOCKER_SERVER/dev:$TRAVIS_BRANCH
+  - docker --version  # document the version travis is using
+  - pip install --user awscli # install aws cli w/o sudo
+  - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+  - eval $(aws ecr get-login --region us-west-2) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
+  - docker build -f Dockerfile -t ipinfo:$TRAVIS_BRANCH .
+
+script:
+  - docker run -it ipinfo:$TRAVIS_BRANCH test
 
 after_success:
-    - docker login -u $DOCKER_USER -p $DOCKER_PASS -e none $DOCKER_SERVER
-    - docker push $DOCKER_SERVER/dev:$TRAVIS_BRANCH
+  - docker tag ipinfo:$TRAVIS_BRANCH $DOCKER_SERVER/$DOCKER_REPOSITORY_NAME:$TRAVIS_BRANCH
+  - docker push $DOCKER_SERVER/$DOCKER_REPOSITORY_NAME:$TRAVIS_BRANCH
+  - chmod +x ./docker_deploy.sh && ./docker_deploy.sh
+
+# whitelist
+branches:
+  only:
+    - master

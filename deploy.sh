@@ -5,6 +5,8 @@ ZIP="$VERSION".zip
 DOCKER_CREDENTIALS_FILE=".dockercfg"
 
 cp ~/.docker/config.json .dockercfg
+cat .dockercfg
+echo "other========="
 
 aws configure set default.region "$DOCKER_REPOSITORY_REGION"
 

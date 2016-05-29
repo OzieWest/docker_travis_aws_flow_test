@@ -13,7 +13,7 @@ sed -i='' "s/<DOCKER_REPOSITORY_REGION>/$DOCKER_REPOSITORY_REGION/" Dockerrun.aw
 sed -i='' "s/<DOCKER_REPOSITORY_NAME>/$DOCKER_REPOSITORY_NAME/" Dockerrun.aws.json
 sed -i='' "s/<TRAVIS_BRANCH>/$TRAVIS_BRANCH/" Dockerrun.aws.json
 
-zip -r "$ZIP" Dockerrun.aws.json
+zip -r "$ZIP" .ebextensions Dockerrun.aws.json
 
 aws s3 cp "$ZIP" s3://"$EB_BUCKET_NAME"/"$ZIP"
 aws s3 cp ~/.docker/config.json s3://"$EB_BUCKET_NAME"/"$DOCKER_CREDENTIALS_FILE"

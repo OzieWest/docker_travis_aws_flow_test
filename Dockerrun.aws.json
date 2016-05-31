@@ -1,11 +1,11 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Authentication": {
-    "Bucket": "<EB_BUCKET_NAME>",
-    "Key": "<DOCKER_CREDENTIALS_FILE>"
+    "Bucket": "ip-docker",
+    "Key": ".dockercfg"
   },
   "Image": {
-    "Name": "<AWS_ACCOUNT_ID>.dkr.ecr.<DOCKER_REPOSITORY_REGION>.amazonaws.com/<DOCKER_REPOSITORY_NAME>:<TRAVIS_BRANCH>",
+    "Name": "847545908627.dkr.ecr.us-west-2.amazonaws.com/ipinfo:test",
     "Update": "true"
   },
   "Ports": [

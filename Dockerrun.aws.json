@@ -5,7 +5,7 @@
     "Key": ".dockercfg"
   },
   "Image": {
-    "Name": "847545908627.dkr.ecr.us-west-2.amazonaws.com/ipinfo:test",
+    "Name": "847545908627.dkr.ecr.us-west-2.amazonaws.com/ipinfo:master",
     "Update": "true"
   },
   "Ports": [

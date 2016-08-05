@@ -25,7 +25,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     aws elasticbeanstalk create-application-version --application-name "$EB_APP_NAME" --version-label "$VERSION" --source-bundle S3Bucket="$EB_BUCKET_NAME",S3Key="$ZIP" --region "us-west-2"
     aws elasticbeanstalk update-environment --environment-name "$EB_ENV_NAME" --version-label "$VERSION" --region "us-west-2"
 else
-    echo "Pull request!"
+    echo "Pull request in $TRAVIS_BRANCH"
 fi
 
 

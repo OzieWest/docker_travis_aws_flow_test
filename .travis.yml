@@ -14,8 +14,6 @@ before_install:
   - docker build -f Dockerfile -t ipinfo:$TRAVIS_BRANCH .
 
 after_success:
-  - docker tag ipinfo:$TRAVIS_BRANCH $DOCKER_SERVER/$DOCKER_REPOSITORY_NAME:$TRAVIS_BRANCH
-  - docker push $DOCKER_SERVER/$DOCKER_REPOSITORY_NAME:$TRAVIS_BRANCH
   - chmod +x ./deploy.sh && ./deploy.sh
 
 # whitelist
